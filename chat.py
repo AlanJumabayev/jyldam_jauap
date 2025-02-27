@@ -7,13 +7,7 @@ import os
 import json
 from datetime import datetime
 from PIL import Image, ImageTk
-from dotenv import load_dotenv
-
-load_dotenv()
-
-# API-ключ OpenAI (замените на свой)
-# Примечание: этот ключ может быть просроченным/недействительным, поэтому рекомендуется заменить на свой актуальный ключ
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+from constants import OPENAI_API_KEY
 
 # Обновленная цветовая схема (соответствует главному меню)
 PRIMARY_COLOR = "#B71C1C"  # Темно-красный

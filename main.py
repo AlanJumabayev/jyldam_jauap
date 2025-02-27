@@ -35,28 +35,47 @@ class MainApp:
         self.create_header()
         self.create_sidebar()
         self.create_main_content()
+        
+    def create_circle_avatar(self, parent, text, size=40):
+        # Create a Canvas widget for the circular avatar
+        canvas = tk.Canvas(parent, width=size, height=size, bg=self.primary_color, 
+                         highlightthickness=0)
+        
+        # Draw a white circle as background
+        canvas.create_oval(2, 2, size-2, size-2, fill="white", outline="")
+        
+        # Add text in the center
+        canvas.create_text(size/2, size/2, text=text, fill=self.primary_color, 
+                          font=("Helvetica", 16, "bold"))
+        
+        return canvas
 
     def create_header(self):
         header = tk.Frame(self.root, bg=self.primary_color, height=80)
         header.pack(side="top", fill="x")
         header.pack_propagate(False)
 
+        # Create a frame to hold both logo and title for better alignment
+        logo_title_frame = tk.Frame(header, bg=self.primary_color)
+        logo_title_frame.pack(side="left", padx=10)
+
         # Добавляем логотип или иконку
         try:
             logo_img = Image.open("images/logo.png")
             logo_img = logo_img.resize((50, 50), Image.LANCZOS)
             logo_photo = ImageTk.PhotoImage(logo_img)
-            logo_label = tk.Label(header, image=logo_photo, bg=self.primary_color)
+            logo_label = tk.Label(logo_title_frame, image=logo_photo, bg=self.primary_color)
             logo_label.image = logo_photo  # Сохраняем ссылку на изображение
-            logo_label.pack(side="left", padx=10, pady=10)
+            logo_label.pack(side="left", padx=5, pady=10)
         except:
             # Если изображение не найдено, используем текстовую иконку
-            logo_label = tk.Label(header, text="JJ", font=("Helvetica", 18, "bold"), 
+            logo_label = tk.Label(logo_title_frame, text="JJ", font=("Helvetica", 18, "bold"), 
                                  fg=self.primary_color, bg="white", width=3, height=1)
-            logo_label.pack(side="left", padx=10, pady=10)
+            logo_label.pack(side="left", padx=5, pady=10)
 
-        title = tk.Label(header, text="JYLDAM JAUAP", font=("Helvetica", 24, "bold"), fg=self.text_color, bg=self.primary_color)
-        title.pack(side="left", padx=5, pady=20)
+        title = tk.Label(logo_title_frame, text="JYLDAM JAUAP", font=("Helvetica", 24, "bold"), 
+                        fg=self.text_color, bg=self.primary_color)
+        title.pack(side="left", padx=5, pady=10)
 
         subtitle = tk.Label(header, text="Правовые решения для вашего бизнеса", font=("Helvetica", 12), fg=self.text_color, bg=self.primary_color)
         subtitle.pack(side="left", padx=10, pady=20)
@@ -93,11 +112,11 @@ class MainApp:
                           command=self.switch_to_english, **lang_button_style)
         en_btn.pack(side="left", padx=2)
 
-        profile_icon = tk.Label(header, text="AJ", font=("Helvetica", 16, "bold"), 
-                               fg=self.primary_color, bg="white", width=3, height=2, 
-                               relief="solid", cursor="hand2")
-        profile_icon.pack(side="right", padx=10, pady=10)
-        profile_icon.bind("<Button-1>", lambda e: self.open_profile())
+        # Create and place the circular profile avatar (replacing the square profile icon)
+        profile_avatar = self.create_circle_avatar(header, "AJ", size=44)
+        profile_avatar.pack(side="right", padx=10, pady=10)
+        profile_avatar.bind("<Button-1>", lambda e: self.open_profile())
+        self.profile_avatar = profile_avatar
     
     # Функции для переключения языков - пока не работающие
     def switch_to_kazakh(self):
