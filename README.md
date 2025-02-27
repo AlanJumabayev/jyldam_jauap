@@ -13,7 +13,7 @@ Jyldam Jauap is a smart city legal assistant application designed to provide leg
 ## Installation
 1. **Clone the repository**:
     ```sh
-    git clone https://github.com/yourusername/Project_For_Smart_City_V1.git
+    git clone https://github.com/AlanJumabayev/Project_For_Smart_City_V1
     cd Project_For_Smart_City_V1
     ```
 
@@ -59,4 +59,4 @@ Project_For_Smart_City_V1/
 Contributions are welcome! Please fork the repository and submit a pull request.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE).
