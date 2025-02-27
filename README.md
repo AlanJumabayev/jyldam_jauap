@@ -10,6 +10,8 @@ Jyldam Jauap is a smart city legal assistant application designed to provide leg
 - **Lawyer Database**: Find qualified lawyers based on specialization and experience.
 - **AI Legal Assistant**: Get instant legal advice and answers to your questions.
 
+![Снимок экрана 2025-02-27 131928](https://github.com/user-attachments/assets/cf5ad63d-664b-44fb-8edd-c53bdccf2667)
+
 ## Installation
 1. **Clone the repository**:
     ```sh
